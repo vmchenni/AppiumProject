@@ -2,7 +2,7 @@ DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
     desiredCapabilities.setCapability("deviceName", "HT35JW912039");
     desiredCapabilities.setCapability("platformName", "android");
     desiredCapabilities.setCapability("platformVersion", "4.4.4");
-    desiredCapabilities.setCapability("app", "G://Ravi testing/Apps/Demo.apk");
+    desiredCapabilities.setCapability("app", "G:APK PATH/Demo.apk");
     desiredCapabilities.setCapability("appPackage", "packageName");
     desiredCapabilities.setCapability("appActivity", "activityName");
 
