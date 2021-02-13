@@ -170,4 +170,11 @@ public class StepDefinitions {
         driver=new AndroidDriver<>(new URL("http://0.0.0.0:4723/wd/hub"),capabilities);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
+
+    @Given("User launches chrome browser in mobile")
+    public void userLaunchesChromeBrowserInMobile() throws MalformedURLException {
+        Utilities utilities=new Utilities();
+        utilities.userLaunchesChromeBrowserInMobile();
+
+    }
 }
