@@ -24,6 +24,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.eo.Do;
 import io.cucumber.java.hu.De;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.touch.TouchActions;
@@ -52,6 +53,7 @@ public class StepDefinitions {
     public static AndroidDriver<AndroidElement> driver;
     public static Utilities utilities;
     public static IOSDriver<IOSElement> IOSDriver;
+
 
 
     @Given("User prints hello world")
@@ -175,6 +177,25 @@ public class StepDefinitions {
     public void userLaunchesChromeBrowserInMobile() throws MalformedURLException {
         Utilities utilities=new Utilities();
         utilities.userLaunchesChromeBrowserInMobile();
+
+    }
+
+    @Given("user launches general store app")
+    public void userLaunchesGeneralStoreApp() throws MalformedURLException {
+        utilities=new Utilities();
+        DesiredCapabilities capabilities=new DesiredCapabilities();
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Galaxy S9+");
+        capabilities.setCapability(MobileCapabilityType.UDID,"42345a3836313098");
+        capabilities.setCapability(MobileCapabilityType.APP,"/Users/vishwanathchenni/Documents/AppiumProjectUpdatedV4.0/AppiumProject/App/General-Store.apk");
+        driver=new AndroidDriver<AndroidElement>(new URL("http://0.0.0.0:4723/wd/hub"),capabilities);
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+    }
+
+    @Given("User Selects {string} from dropdown")
+    public void userSelectsFromDropdown(String arg0) {
+        AndroidElement myElement=StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/spinnerCountry");
+        utilities.tapOnElement(myElement);
+        utilities.scrollTillAnElementWithTextIsDisplayed(arg0);
 
     }
 }

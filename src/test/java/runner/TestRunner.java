@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"json:target/cucumber.json"},
         features = {"features"},
         monochrome = true,
-        tags = {"@Sample"},
+        tags = {"@GeneralStore"},
         glue = {"stepDefnition"}
 
         )
