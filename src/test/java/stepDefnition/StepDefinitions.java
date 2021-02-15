@@ -221,7 +221,12 @@ public class StepDefinitions {
 
     @Then("Click on add to cart button for {string}")
     public void clickOnAddToCartButtonFor(String arg0) {
-        utilities.tapOnElement(StepDefinitions.driver.findElementByXPath("//*[@text='ADD TO CART']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout/android.widget.TextView[@text='Air Jordan 9 Retro']"));
+//        utilities.tapOnElement(StepDefinitions.driver.findElementByXPath("//*[@text='ADD TO CART']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout/android.widget.TextView[@text='Air Jordan 9 Retro']"));
+        utilities.tapOnElement(StepDefinitions.driver.findElementByXPath("//*[@text='"+arg0+"']/following-sibling::android.widget.LinearLayout/android.widget.TextView[@text='ADD TO CART']"));
+    }
 
+    @Then("User click on cart icon")
+    public void userClickOnCartIcon() {
+        utilities.tapOnElement(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/appbar_btn_cart"));
     }
 }

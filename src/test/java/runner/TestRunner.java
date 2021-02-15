@@ -10,7 +10,9 @@ import org.junit.runner.RunWith;
         features = {"features"},
         monochrome = true,
         tags = {"@GeneralStore"},
-        glue = {"stepDefnition"}
+        glue = {"stepDefnition"},
+        stepNotifications = true
+
 
         )
 public class TestRunner {
