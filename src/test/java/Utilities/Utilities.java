@@ -24,6 +24,7 @@ import stepDefnition.StepDefinitions;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Utilities {
@@ -106,5 +107,19 @@ public class Utilities {
                  continue;
              }
          }while (true);
+    }
+
+    public void switchNativeToWeb() throws InterruptedException {
+        Thread.sleep(10000);
+        Set<String> contextNames = StepDefinitions.driver.getContextHandles();
+        for (String contextName : contextNames) {
+            System.out.println(contextName); //prints out something like NATIVE_APP \n WEBVIEW_1
+        }
+        StepDefinitions.driver.context((String) contextNames.toArray()[1]);
+//        StepDefinitions.driver.context("NATIVE_APP");
+
+    }
+    public void switchWebToNative() {
+        StepDefinitions.driver.context("NATIVE_APP");
     }
 }

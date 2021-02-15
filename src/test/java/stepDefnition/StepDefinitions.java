@@ -24,9 +24,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.eo.Do;
 import io.cucumber.java.hu.De;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.HttpCommandExecutor;
@@ -228,5 +226,27 @@ public class StepDefinitions {
     @Then("User click on cart icon")
     public void userClickOnCartIcon() {
         utilities.tapOnElement(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/appbar_btn_cart"));
+    }
+
+    @Then("long press on terms and condition")
+    public void longPressOnTermsAndCondition() {
+        utilities.longPressOnElement(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/termsButton"));
+    }
+
+    @Then("Click on close button of terms and condition")
+    public void clickOnCloseButtonOfTermsAndCondition() {
+        utilities.tapOnElement(StepDefinitions.driver.findElementById("android:id/button1"));
+    }
+
+    @And("tap on visit website")
+    public void tapOnVisitWebsite() {
+        utilities.tapOnElement(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/btnProceed"));
+    }
+
+    @And("verify edit box on webview")
+    public void verifyEditBoxOnWebview() throws InterruptedException {
+        utilities.switchNativeToWeb();
+        StepDefinitions.driver.findElementByXPath("//input[@name='q']").sendKeys("Vishwanath");
+        StepDefinitions.driver.findElementByXPath("//input[@name='q']").sendKeys(Keys.RETURN);
     }
 }
