@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
         glue = {"stepDefnition"},
         stepNotifications = true
 
-
         )
 public class TestRunner {
 }
