@@ -3,6 +3,7 @@ package stepDefnition;
 import Utilities.Utilities;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileCommand;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -11,6 +12,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.remote.MobileBrowserType;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -51,8 +53,9 @@ public class StepDefinitions {
     public static AndroidDriver<AndroidElement> driver;
     public static Utilities utilities;
     public static IOSDriver<IOSElement> IOSDriver;
-
-
+    @iOSFindBy(xpath="TBD")
+    @AndroidBy(id="TBD")
+    private MobileElement myelement;
 
     @Given("User prints hello world")
     public void Userprintshelloworld(){
@@ -88,6 +91,7 @@ public class StepDefinitions {
     @Given("User taps on Views")
     public void userTapsOnViews() {
         utilities.tapOnElement(StepDefinitions.driver.findElementByAccessibilityId("Views"));
+        utilities.tapOnElementUpdate(myelement);;
     }
 
     @Then("Click on Date Widgets")
