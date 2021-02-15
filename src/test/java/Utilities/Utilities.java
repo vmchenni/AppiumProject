@@ -45,6 +45,8 @@ public class Utilities {
     }
     public void fnEnterTextValue(AndroidElement myElement,String myValue){
 //        myElement.sendKeys(myValue);
+        myElement.sendKeys(myValue);
+        StepDefinitions.driver.hideKeyboard();
     }
     public void DragAndDropElement(AndroidElement fromElement,AndroidElement toElement){
         TouchAction touchAction=new TouchAction(StepDefinitions.driver);
@@ -83,7 +85,7 @@ public class Utilities {
         //Starting y location set to 80% of the height (near bottom)
         int startPoint = (int) (size.getHeight() * 0.80);
         //Ending y location set to 20% of the height (near top)
-        int endPoint = (int) (size.getHeight() * 0.40);
+        int endPoint = (int) (size.getHeight() * 0.30);
 
      TouchAction touchAction=new TouchAction(StepDefinitions.driver);
 

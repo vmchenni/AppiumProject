@@ -198,4 +198,30 @@ public class StepDefinitions {
         utilities.scrollTillAnElementWithTextIsDisplayed(arg0);
 
     }
+
+    @Then("User click on Lets shop button")
+    public void userClickOnLetsShopButton() {
+        utilities.tapOnElement(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/btnLetsShop"));
+    }
+
+    @Then("Enter your name as {string}")
+    public void enterYourNameAs(String arg0) {
+        utilities.fnEnterTextValue(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/nameField"),arg0);
+    }
+
+    @Then("Select Female Radio button")
+    public void selectFemaleRadioButton() {
+        utilities.tapOnElement(StepDefinitions.driver.findElementById("com.androidsample.generalstore:id/radioFemale"));
+    }
+
+    @And("Scroll tll {string} is displayed")
+    public void scrollTllIsDisplayed(String arg0) {
+        utilities.scrollTillAnElementWithTextIsDisplayed(arg0);
+    }
+
+    @Then("Click on add to cart button for {string}")
+    public void clickOnAddToCartButtonFor(String arg0) {
+        utilities.tapOnElement(StepDefinitions.driver.findElementByXPath("//*[@text='ADD TO CART']/parent::android.widget.LinearLayout/parent::android.widget.LinearLayout/android.widget.TextView[@text='Air Jordan 9 Retro']"));
+
+    }
 }
