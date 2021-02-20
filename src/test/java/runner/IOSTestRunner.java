@@ -14,5 +14,5 @@ import org.junit.runner.RunWith;
         stepNotifications = true
 
         )
-public class TestRunnerIOS {
+public class IOSTestRunner {
 }

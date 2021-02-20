@@ -1,6 +1,7 @@
 package stepDefnition;
 
 import Utilities.Utilities;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileCommand;
 import io.appium.java_client.MobileElement;
@@ -275,15 +276,14 @@ public class StepDefinitions {
         cap.setCapability(MobileCapabilityType.UDID, "F8BFFE83-3FFE-4E59-8C45-356F0702006F");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
         cap.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT,500000);
-        cap.setCapability("commandTimeouts","12000");
-        cap.setCapability("xcodeOrgId","**********");
-        cap.setCapability("xcodeSigningId","Phone Developer");
-
-
         cap.setCapability(MobileCapabilityType.APP, "/Users/vishwanathchenni/Documents/UIKitCatalog.app");
         StepDefinitions.IOSDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
         IOSDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Activity Indicators"));
+//        IOSDriver.executeScript("mobile: pressButton", ImmutableMap.of("name", "home"));
+//        IOSDriver.activateApp("com.facebook.vc.WebDriverAgentLib");
+//        IOSDriver.launchApp();
+        IOSDriver.runAppInBackground(Duration.ofSeconds(5));
 
     }
 }

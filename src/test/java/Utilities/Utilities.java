@@ -132,5 +132,6 @@ public class Utilities {
     public void tapOnIOSElement(IOSElement activity_indicators) {
         TouchAction touchAction=new TouchAction(StepDefinitions.IOSDriver);
         touchAction.tap(TapOptions.tapOptions().withElement(ElementOption.element(activity_indicators))).release().perform();
+
     }
 }
