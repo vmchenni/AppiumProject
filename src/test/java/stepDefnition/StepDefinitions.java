@@ -14,6 +14,8 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.remote.AutomationName;
+import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileBrowserType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.TapOptions;
@@ -53,7 +55,7 @@ public class StepDefinitions {
     public static AndroidDriver<AndroidElement> driver;
     public static Utilities utilities;
     public static IOSDriver<IOSElement> IOSDriver;
-    @iOSFindBy(xpath="TBD")
+    @iOSFindBy(accessibility="Activity Indicators")
     @AndroidBy(id="TBD")
     private MobileElement myelement;
 
@@ -252,5 +254,36 @@ public class StepDefinitions {
         utilities.switchNativeToWeb();
         StepDefinitions.driver.findElementByXPath("//input[@name='q']").sendKeys("Vishwanath");
         StepDefinitions.driver.findElementByXPath("//input[@name='q']").sendKeys(Keys.RETURN);
+    }
+
+    @Given("User launches IOS App")
+    public void userLaunchesIOSApp() throws MalformedURLException {
+//        DesiredCapabilities capabilities=new DesiredCapabilities();
+//        capabilities.setCapability(MobileCapabilityType.APP,"/Users/vishwanathchenni/Documents/TestApp.app");
+//        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone");
+//        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"IOS");
+//        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"12.1");
+//        capabilities.setCapability(MobileCapabilityType.UDID,"8C1E63F1-8B04-4C8C-9A4D-22A59AE7BE3C");
+//        capabilities.setCapability("usePrebuiltWDA", false);
+//        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
+//        IOSDriver<IOSElement> IOSDriver=new IOSDriver<IOSElement>(new URL("http://0.0.0.0:4723/wd/hub"),capabilities);
+        utilities=new Utilities();
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
+        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.3");
+        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
+        cap.setCapability(MobileCapabilityType.UDID, "F8BFFE83-3FFE-4E59-8C45-356F0702006F");
+        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
+        cap.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT,500000);
+        cap.setCapability("commandTimeouts","12000");
+        cap.setCapability("xcodeOrgId","**********");
+        cap.setCapability("xcodeSigningId","Phone Developer");
+
+
+        cap.setCapability(MobileCapabilityType.APP, "/Users/vishwanathchenni/Documents/UIKitCatalog.app");
+        StepDefinitions.IOSDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        IOSDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Activity Indicators"));
+
     }
 }

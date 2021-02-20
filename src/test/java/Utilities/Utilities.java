@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
@@ -125,5 +126,11 @@ public class Utilities {
     }
 
     public void tapOnElementUpdate(MobileElement myelement) {
+    }
+
+
+    public void tapOnIOSElement(IOSElement activity_indicators) {
+        TouchAction touchAction=new TouchAction(StepDefinitions.IOSDriver);
+        touchAction.tap(TapOptions.tapOptions().withElement(ElementOption.element(activity_indicators))).release().perform();
     }
 }
