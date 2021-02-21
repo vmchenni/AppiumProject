@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -160,5 +161,12 @@ public class Utilities {
     public void fnVerifyExpectedLabelFromIOSElement(IOSElement iOSElement,String sExpectedValue){
         String sActualValue=iOSElement.getAttribute("label");
         Assert.assertEquals(sExpectedValue,sActualValue);
+    }
+
+    public void fnScrollToAnObjectWithName(String sName){
+        HashMap<String,Object> args=new HashMap<>();
+        args.put("direction","down");
+        args.put("name",""+sName);
+        StepDefinitions.IOSDriver.executeScript("mobile:scroll",args);
     }
 }
