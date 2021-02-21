@@ -7,3 +7,23 @@ https://www.codota.com/code/java/methods/io.appium.java_client.android.AndroidDr
 
 WebDriver Agent Configuration:
 https://www.programmersought.com/article/11896452360/
+
+DesiredCapabilities for aOS in Appium
+{
+  "automationName": "Appium",
+  "platformName": "Android",
+  "platformVersion": "9",
+  "deviceName": "Galaxy S9+",
+  "app": "/Users/vishwanathchenni/Downloads/General-Store.apk",
+  "udid": "42345a3836313098"
+}
+
+DesiredCapabilities for iOS in Appium
+{
+  "platformName": "IOS",
+  "platformVersion": "13.3",
+  "deviceName": "iPhone",
+  "udid": "F8BFFE83-3FFE-4E59-8C45-356F0702006F",
+  "automationName": "XCUITest",
+  "app": "/Users/vishwanathchenni/Documents/UIKitCatalog.app"
+}

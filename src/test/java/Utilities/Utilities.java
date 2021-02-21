@@ -21,16 +21,22 @@ import static java.time.Duration.ofSeconds;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import stepDefnition.StepDefinitions;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Utilities {
-
+    public static Properties properties;
     public  void tapOnElement(AndroidElement myElement) {
         TouchAction touchAction=new TouchAction(StepDefinitions.driver);
 //        touchAction.tap(tapOptions().withElement(element(myElement))).perform();
@@ -129,9 +135,24 @@ public class Utilities {
     }
 
 
-    public void tapOnIOSElement(IOSElement activity_indicators) {
+    public void tapOnIOSElement(IOSElement activity_indicators) throws InterruptedException {
+        Thread.sleep(2000);
         TouchAction touchAction=new TouchAction(StepDefinitions.IOSDriver);
         touchAction.tap(TapOptions.tapOptions().withElement(ElementOption.element(activity_indicators))).release().perform();
 
+    }
+
+    public void LoadProperiesFile() throws IOException {
+        FileInputStream fis=new FileInputStream("config.properties");
+        Utilities.properties=new Properties();
+        Utilities.properties.load(fis);
+        Utilities.properties.getProperty("iOSAppPath");
+        System.out.println("IOSFile Path is :-"+Utilities.properties.getProperty("iOSAppPath"));
+
+    }
+
+    public void enterTextInIOSEditBox(IOSElement elementByXPath, String sample) {
+        elementByXPath.sendKeys(sample);
+        StepDefinitions.IOSDriver.hideKeyboard();
     }
 }

@@ -40,6 +40,8 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static java.time.Duration.ofSeconds;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -258,17 +260,9 @@ public class StepDefinitions {
     }
 
     @Given("User launches IOS App")
-    public void userLaunchesIOSApp() throws MalformedURLException {
-//        DesiredCapabilities capabilities=new DesiredCapabilities();
-//        capabilities.setCapability(MobileCapabilityType.APP,"/Users/vishwanathchenni/Documents/TestApp.app");
-//        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone");
-//        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"IOS");
-//        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"12.1");
-//        capabilities.setCapability(MobileCapabilityType.UDID,"8C1E63F1-8B04-4C8C-9A4D-22A59AE7BE3C");
-//        capabilities.setCapability("usePrebuiltWDA", false);
-//        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
-//        IOSDriver<IOSElement> IOSDriver=new IOSDriver<IOSElement>(new URL("http://0.0.0.0:4723/wd/hub"),capabilities);
+    public void userLaunchesIOSApp() throws IOException, InterruptedException {
         utilities=new Utilities();
+        utilities.LoadProperiesFile();
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
         cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.3");
@@ -276,14 +270,19 @@ public class StepDefinitions {
         cap.setCapability(MobileCapabilityType.UDID, "F8BFFE83-3FFE-4E59-8C45-356F0702006F");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
         cap.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT,500000);
-        cap.setCapability(MobileCapabilityType.APP, "/Users/vishwanathchenni/Documents/UIKitCatalog.app");
+        cap.setCapability(MobileCapabilityType.APP, ""+Utilities.properties.getProperty("iOSAppPath"));
         StepDefinitions.IOSDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
         IOSDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Activity Indicators"));
-//        IOSDriver.executeScript("mobile: pressButton", ImmutableMap.of("name", "home"));
-//        IOSDriver.activateApp("com.facebook.vc.WebDriverAgentLib");
-//        IOSDriver.launchApp();
-        IOSDriver.runAppInBackground(Duration.ofSeconds(5));
+
+        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Alert Views"));
+
+        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Text Entry"));
+
+        utilities.enterTextInIOSEditBox(IOSDriver.findElementByXPath("//*[@type='XCUIElementTypeTextField']"),"Sample");
+
+        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Confirm / Cancel"));
+
+        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Confirm"));
 
     }
 }
