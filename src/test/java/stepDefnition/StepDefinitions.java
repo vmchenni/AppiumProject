@@ -60,7 +60,7 @@ public class StepDefinitions {
     public static IOSDriver<IOSElement> IOSDriver;
     @iOSFindBy(accessibility="Activity Indicators")
     @AndroidBy(id="TBD")
-    private MobileElement myelement;
+    private WebElement myelement1;
 
     @Given("User prints hello world")
     public void Userprintshelloworld(){
@@ -96,7 +96,6 @@ public class StepDefinitions {
     @Given("User taps on Views")
     public void userTapsOnViews() {
         utilities.tapOnElement(StepDefinitions.driver.findElementByAccessibilityId("Views"));
-        utilities.tapOnElementUpdate(myelement);;
     }
 
     @Then("Click on Date Widgets")
