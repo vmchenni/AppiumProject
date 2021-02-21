@@ -19,6 +19,7 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static java.time.Duration.ofSeconds;
 
+import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -154,5 +155,10 @@ public class Utilities {
     public void enterTextInIOSEditBox(IOSElement elementByXPath, String sample) {
         elementByXPath.sendKeys(sample);
         StepDefinitions.IOSDriver.hideKeyboard();
+    }
+
+    public void fnVerifyExpectedLabelFromIOSElement(IOSElement iOSElement,String sExpectedValue){
+        String sActualValue=iOSElement.getAttribute("label");
+        Assert.assertEquals(sExpectedValue,sActualValue);
     }
 }
