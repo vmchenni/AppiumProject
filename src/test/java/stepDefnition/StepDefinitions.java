@@ -34,6 +34,8 @@ import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.support.FindBy;
+import pageobjects.AlertPage;
+import pageobjects.UIKitCatalogHomePage;
 
 import static io.appium.java_client.touch.TapOptions.tapOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
@@ -58,9 +60,8 @@ public class StepDefinitions {
     public static AndroidDriver<AndroidElement> driver;
     public static Utilities utilities;
     public static IOSDriver<IOSElement> IOSDriver;
-    @iOSFindBy(accessibility="Activity Indicators")
-    @AndroidBy(id="TBD")
-    private WebElement myelement1;
+    public static UIKitCatalogHomePage uiKitCatalogHomePage;
+    public static AlertPage alertPage;
 
     @Given("User prints hello world")
     public void Userprintshelloworld(){
@@ -262,6 +263,7 @@ public class StepDefinitions {
     public void userLaunchesIOSApp() throws IOException, InterruptedException {
         utilities=new Utilities();
         utilities.LoadProperiesFile();
+
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
         cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.3");
@@ -273,15 +275,33 @@ public class StepDefinitions {
         StepDefinitions.IOSDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
         IOSDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
-        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Alert Views"));
+        uiKitCatalogHomePage=new UIKitCatalogHomePage(StepDefinitions.IOSDriver);
+        alertPage=new AlertPage(StepDefinitions.IOSDriver);
 
-        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Text Entry"));
 
-        utilities.enterTextInIOSEditBox(IOSDriver.findElementByXPath("//*[@type='XCUIElementTypeTextField']"),"Sample");
 
-        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Confirm / Cancel"));
+//        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Text Entry"));
+//
+//        utilities.enterTextInIOSEditBox(IOSDriver.findElementByXPath("//*[@type='XCUIElementTypeTextField']"),"Sample");
+//
+//        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Confirm / Cancel"));
+//
+//        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Confirm"));
 
-        utilities.tapOnIOSElement(IOSDriver.findElementByAccessibilityId("Confirm"));
+    }
 
+    @Given("User taps on Alert View")
+    public void userTapsOnAlertView() throws InterruptedException {
+        uiKitCatalogHomePage.userTapsOnAlertView();
+    }
+
+    @Then("User taps on Text Entry")
+    public void userTapsOnTextEntry() throws InterruptedException {
+        alertPage.userTapsOnTextEntry();
+    }
+
+    @Then("Enter text as {string}")
+    public void enterTextAs(String arg0) {
+        alertPage.enterTextAs(arg0);
     }
 }

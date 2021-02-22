@@ -21,6 +21,7 @@ import static java.time.Duration.ofSeconds;
 
 import org.junit.Assert;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,10 +55,8 @@ public class Utilities {
         touchAction.tap(TapOptions.tapOptions().withElement(element(myElement))).release().perform().
                 tap(TapOptions.tapOptions().withElement(element(myElement))).release().perform();
     }
-    public void fnEnterTextValue(AndroidElement myElement,String myValue){
-//        myElement.sendKeys(myValue);
+    public void fnEnterTextValue(WebElement myElement,String myValue){
         myElement.sendKeys(myValue);
-        StepDefinitions.driver.hideKeyboard();
     }
     public void DragAndDropElement(AndroidElement fromElement,AndroidElement toElement){
         TouchAction touchAction=new TouchAction(StepDefinitions.driver);
@@ -137,7 +136,7 @@ public class Utilities {
     }
 
 
-    public void tapOnIOSElement(IOSElement activity_indicators) throws InterruptedException {
+    public void tapOnIOSElement(WebElement activity_indicators) throws InterruptedException {
         Thread.sleep(2000);
         TouchAction touchAction=new TouchAction(StepDefinitions.IOSDriver);
         touchAction.tap(TapOptions.tapOptions().withElement(ElementOption.element(activity_indicators))).release().perform();

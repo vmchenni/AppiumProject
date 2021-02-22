@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"json:target/UICatelog.json"},
+        plugin = {"json:target/UICatelog-2.json"},
         features = {"features"},
         monochrome = true,
         tags = {"@UICatalog"},

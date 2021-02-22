@@ -1,9 +1,21 @@
+Steps To Be Followed
+01. Create basic framework
+02. Create packages for runner, stepDef, PageObject and Utility
+03. Create folder for features
+00. Create Configuration file
+01. Launch App
+02. Build Pages
+03. Initialize constructor
+04. Create Utility Functions
 Remote Debugging Of Adroid Devices
 https://developers.google.com/web/tools/chrome-devtools/remote-debugging
 
 
 Sample Codes can be reffered at
 https://www.codota.com/code/java/methods/io.appium.java_client.android.AndroidDriver/pressKey
+
+Source of Info
+https://github.com/appium/java-client/blob/master/src/test/java/io/appium/java_client/pagefactory_tests/XCUITModeTest.java
 
 WebDriver Agent Configuration:
 https://www.programmersought.com/article/11896452360/
